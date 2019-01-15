@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /resources/dao/mapper/Item.xml -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.UserMapper">
+   <select id="list" resultType="User" parameterType="map">
+      select * from member2
+      <if test = "userId != null">
+         where userId = #{userId}
+      </if>
+      <if test="ids != null">
+         where userId in
+         <foreach collection="ids" separator="," item="userid" open="(" close=")">
+            #{userId}
+         </foreach>
+      </if>
+      order by userId
+   </select>
+</mapper>
